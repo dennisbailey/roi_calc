@@ -12,19 +12,36 @@
       <thead>
         <tr>
           <th>Description</th>
-          <th>One-Time</th>
-          <th>Monthly</th>
+          <th class="text-right">One-Time</th>
+          <th class="text-right">Monthly</th>
+          <th class="text-center">Edit</th>
+          <th class="text-center">Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat-start="data in vm.revenues">
-          <td>{{ data.description }}</td>
-          <td>{{ data.oneTime | currency }}</td>
-          <td>{{ data.monthly | currency }}</td>
+        <tr ng-repeat-start="revenue in vm.revenueData">
+          <td><strong>{{ revenue.description }}</strong></td>
+          <td class="text-right">{{ revenue.oneTime | currency }}</td>
+          <td class="text-right">{{ revenue.monthly | currency }}</td>
+          <td class="text-center">
+            <span class="glyphicon glyphicon-pencil" 
+                  aria-hidden="true"
+                  ></span>
+          </td>
+          <td class="text-center">
+            <span class="glyphicon glyphicon-remove" 
+                  aria-hidden="true"
+                  ></span>
+          </td>
         </tr>
         <tr ng-repeat-end></tr>
       </tbody>
     </table>
+  </div>
+  <div class="col-md-6 col-md-offset-3">
+    <button type="button" 
+            class="btn btn-primary btn-md btn-block"
+            >Add Revenue</button>
   </div>
 </div>
 
@@ -38,18 +55,127 @@
       <thead>
         <tr>
           <th>Description</th>
-          <th>One-Time</th>
-          <th>Monthly</th>
+          <th class="text-right">One-Time</th>
+          <th class="text-right">Monthly</th>
+          <th class="text-center">Edit</th>
+          <th class="text-center">Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat-start="data in vm.expenses">
-          <td>{{ data.description }}</td>
-          <td>{{ data.oneTime | currency }}</td>
-          <td>{{ data.monthly | currency }}</td>
+        <tr ng-repeat-start="expense in vm.expenseData">
+          <td><strong>{{ expense.description }}</strong></td>
+          <td class="text-right">{{ expense.oneTime | currency }}</td>
+          <td class="text-right">{{ expense.monthly | currency }}</td>
+          <td class="text-center">
+            <span class="glyphicon glyphicon-pencil" 
+                  aria-hidden="true"
+                  ></span>
+          </td>
+          <td class="text-center">
+            <span class="glyphicon glyphicon-remove" 
+                  aria-hidden="true"
+                  ></span>
+          </td>
         </tr>
         <tr ng-repeat-end></tr>
       </tbody>
     </table>
   </div>
+  <div class="col-md-6 col-md-offset-3">
+    <button type="button" 
+            class="btn btn-primary btn-md btn-block"
+            >Add Expense</button>
+  </div>
 </div>
+
+<div class="row">
+  <h1>ROI CALC</h1>
+</div>
+  
+<div class="row">
+  <div class="col-md-12">
+    <h3>Totals</h3>
+  </div>
+  
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>One-Time</th>
+          <th>Monthly</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Revenues</td>
+          <td class="text-right">{{ vm.revenuesOneTimeTotal | currency }}</td>
+          <td class="text-right">{{ vm.revenuesMonthlyTotal | currency }}</td>
+          <td class="text-right">{{ vm.revenuesTotal | currency }}</td>
+        </tr>
+        <tr>
+          <td scope="row">Expenses</td>
+          <td class="text-right">{{ vm.expensesOneTimeTotal | currency }}</td>
+          <td class="text-right">{{ vm.expensesMonthlyTotal | currency }}</td>
+          <td class="text-right">{{ vm.expensesTotal | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Contribution Profit</h3>
+  </div>
+  
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Monthly</td>
+          <td class="text-right">{{ vm.contributionProfitMonthly | currency }}</td>
+        </tr>
+        <tr>
+          <td scope="row">Total</td>
+          <td class="text-right">{{ vm.contributionProfitTotal | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Other</h3>
+  </div>
+  
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Fact</th>
+          <th>Figure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Contribution Margin</td>
+          <td>{{ vm.contributionMargin | number:0 }}%</td>
+        </tr>
+        <tr>
+          <td scope="row">Capital ROI (Months)</td>
+          <td>{{ vm.capitalRoi | number:1 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
