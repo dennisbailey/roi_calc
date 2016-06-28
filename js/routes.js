@@ -13,6 +13,14 @@
     .when('/', {
       template: '<roi></roi>'
     })
+    
+    .when('/revAndExp', {
+      template: '<revandexp></revandexp>'
+    })
+    
+    .when('/roiCalc', {
+      template: '<roiCalc></roiCalc>'
+    })
 
     .otherwise({redirectTo: '/'});
 
