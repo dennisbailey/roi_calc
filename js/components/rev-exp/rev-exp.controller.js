@@ -14,6 +14,11 @@ function RevExpCtrl($rootScope) {
   vm.deleteRevenue = function(index) {
     revenueData.splice(index, 1);
     vm.revenueData = revenueData;
+  };
+  
+  vm.deleteExpense = function(index) {
+    expenseData.splice(index, 1);
+    vm.expenseData = expenseData;
   }
   
   var updateRevenueTotals = function() {
