@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='roiApp'>
+<html lang="en" ng-app='roiCalcApp'>
   <head>
     <meta charset="utf-8">
     <title>ROI Calculator</title>
@@ -7,17 +7,32 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
+  
   <body>
-    <!-- sample angular code -->
-    <div class="container">
-      <div ng-controller="myController">
-        <p>{{ greeting }}</p>
-      </div>
-    </div>
     
+    <div ng-view></div>
+    
+    <!-- Bootstrap Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    
+    <!-- Angular
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.10/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.10/angular-route.min.js"></script>
+    
+    <!-- General Angular Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/routes.js"></script>
+    
+    <!-- Component Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <!-- ROI Component
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <script type="text/javascript" src="js/components/roi/roi.directive.js"></script>
+      <script type="text/javascript" src="js/components/roi/roi.controller.js"></script>
+
   </body>
 </html>
