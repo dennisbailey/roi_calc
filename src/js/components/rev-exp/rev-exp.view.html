@@ -1,3 +1,12 @@
+<!-- Revenue Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      ...
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <h1>Revenue and Expense</h1>
 </div>
@@ -14,8 +23,7 @@
           <th>Description</th>
           <th class="text-right">One-Time</th>
           <th class="text-right">Monthly</th>
-          <th class="text-center">Edit</th>
-          <th class="text-center">Delete</th>
+          <th class="text-center">Edit/Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -24,15 +32,14 @@
           <td class="text-right">{{ revenue.oneTime | currency }}</td>
           <td class="text-right">{{ revenue.monthly | currency }}</td>
           <td class="text-center">
-            <span class="glyphicon glyphicon-pencil" 
+            <span class="glyphicon glyphicon-pencil text-warning" 
                   aria-hidden="true"
+                  style="padding-right: 5px;"
                   ></span>
-          </td>
-          <td class="text-center"
-              ng-click="vm.deleteRevenue($index)"
-              >
-            <span class="glyphicon glyphicon-remove" 
+            <span class="glyphicon glyphicon-remove text-danger" 
                   aria-hidden="true"
+                  style="padding-left: 5px;"
+                  ng-click="vm.deleteRevenue($index)"
                   ></span>
           </td>
         </tr>
@@ -42,8 +49,9 @@
   </div>
   <div class="col-md-6 col-md-offset-3">
     <button type="button" 
-            class="btn btn-primary btn-md btn-block"
-            >Add Revenue</button>
+            class="btn btn-primary btn-md btn-block" 
+            data-toggle="modal" 
+            data-target="revenue-modal">Add Revenue</button>
   </div>
 </div>
 
@@ -59,8 +67,7 @@
           <th>Description</th>
           <th class="text-right">One-Time</th>
           <th class="text-right">Monthly</th>
-          <th class="text-center">Edit</th>
-          <th class="text-center">Delete</th>
+          <th class="text-center">Edit/Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -69,15 +76,14 @@
           <td class="text-right">{{ expense.oneTime | currency }}</td>
           <td class="text-right">{{ expense.monthly | currency }}</td>
           <td class="text-center">
-            <span class="glyphicon glyphicon-pencil" 
+            <span class="glyphicon glyphicon-pencil text-warning" 
                   aria-hidden="true"
+                  style="padding-right: 5px;"
                   ></span>
-          </td>
-          <td class="text-center"
-              ng-click="vm.deleteExpense($index)"
-              >
-            <span class="glyphicon glyphicon-remove" 
+            <span class="glyphicon glyphicon-remove text-danger" 
                   aria-hidden="true"
+                  style="padding-left: 5px;"
+                  ng-click="vm.deleteExpense($index)"
                   ></span>
           </td>
         </tr>
