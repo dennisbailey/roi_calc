@@ -8,6 +8,14 @@ function RevExpCtrl($rootScope) {
 
   var vm = this;
   
+  vm.revenueData = revenueData;
+  vm.expenseData = expenseData;
+  
+  vm.deleteRevenue = function(index) {
+    revenueData.splice(index, 1);
+    vm.revenueData = revenueData;
+  }
+  
   var updateRevenueTotals = function() {
     
     vm.revenuesOneTimeTotal = revenueData.reduce(function (total, obj) { return total + obj.oneTime; }, 0);
