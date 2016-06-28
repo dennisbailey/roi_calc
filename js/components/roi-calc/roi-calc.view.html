@@ -20,15 +20,15 @@
       <tbody>
         <tr>
           <td scope="row">Revenues</td>
-          <td>{{ vm.revenueOneTimeTotal }}</td>
-          <td>{{ vm.revenueMonthlyTotal }}</td>
-          <td>{{ vm.revenueTotal }}</td>
+          <td class="text-right">{{ vm.revenuesOneTimeTotal | currency }}</td>
+          <td class="text-right">{{ vm.revenuesMonthlyTotal | currency }}</td>
+          <td class="text-right">{{ vm.revenuesTotal | currency }}</td>
         </tr>
         <tr>
           <td scope="row">Expenses</td>
-          <td>{{ vm.expensesOneTimeTotal }}</td>
-          <td>{{ vm.expensesMonthlyTotal }}</td>
-          <td>{{ vm.expensesTotal }}</td>
+          <td class="text-right">{{ vm.expensesOneTimeTotal | currency }}</td>
+          <td class="text-right">{{ vm.expensesMonthlyTotal | currency }}</td>
+          <td class="text-right">{{ vm.expensesTotal | currency }}</td>
         </tr>
       </tbody>
     </table>
@@ -51,11 +51,11 @@
       <tbody>
         <tr>
           <td scope="row">Monthly</td>
-          <td>{{ vm.contributionProfitMonthly }}</td>
+          <td class="text-right">{{ vm.contributionProfitMonthly | currency }}</td>
         </tr>
         <tr>
           <td scope="row">Total</td>
-          <td>{{ vm.contributionProfitTotal }}</td>
+          <td class="text-right">{{ vm.contributionProfitTotal | currency }}</td>
         </tr>
       </tbody>
     </table>
@@ -77,12 +77,12 @@
       </thead>
       <tbody>
         <tr>
-          <td scope="row">Contirbution Margin</td>
-          <td>{{ vm.contributionMargin }}</td>
+          <td scope="row">Contribution Margin</td>
+          <td>{{ vm.contributionMargin | number:0 }}%</td>
         </tr>
         <tr>
           <td scope="row">Capital ROI (Months)</td>
-          <td>{{ vm.capitalRoi }}</td>
+          <td>{{ vm.capitalRoi | number:1 }}</td>
         </tr>
       </tbody>
     </table>
