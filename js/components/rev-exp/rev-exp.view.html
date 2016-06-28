@@ -17,21 +17,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td scope="row">Item 1</td>
-          <td>100</td>
-          <td>50</td>
+        <tr ng-repeat-start="data in vm.revenues">
+          <td>{{ data.description }}</td>
+          <td>{{ data.oneTime | currency }}</td>
+          <td>{{ data.monthly | currency }}</td>
         </tr>
-        <tr>
-          <td scope="row">Item 2</td>
-          <td>50</td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td scope="row">Item 3</td>
-          <td>25</td>
-          <td>85</td>
-        </tr>
+        <tr ng-repeat-end></tr>
       </tbody>
     </table>
   </div>
@@ -52,16 +43,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td scope="row">Item 1</td>
-          <td>500</td>
-          <td>20</td>
+        <tr ng-repeat-start="data in vm.expenses">
+          <td>{{ data.description }}</td>
+          <td>{{ data.oneTime | currency }}</td>
+          <td>{{ data.monthly | currency }}</td>
         </tr>
-        <tr>
-          <td scope="row">Item 2</td>
-          <td>200</td>
-          <td>40</td>
-        </tr>
+        <tr ng-repeat-end></tr>
       </tbody>
     </table>
   </div>

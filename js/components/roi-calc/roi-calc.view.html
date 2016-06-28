@@ -1,10 +1,95 @@
-<div class="container">
-  
-  <div class="row">
-    <h1>ROI CALC</h1>
-  </div>
-
+<div class="row">
+  <h1>ROI CALC</h1>
 </div>
+  
+<div class="row">
+  <div class="col-md-12">
+    <h3>Totals</h3>
+  </div>
+  
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>One-Time</th>
+          <th>Monthly</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Revenues</td>
+          <td>{{ vm.revenueOneTimeTotal }}</td>
+          <td>{{ vm.revenueMonthlyTotal }}</td>
+          <td>{{ vm.revenueTotal }}</td>
+        </tr>
+        <tr>
+          <td scope="row">Expenses</td>
+          <td>{{ vm.expensesOneTimeTotal }}</td>
+          <td>{{ vm.expensesMonthlyTotal }}</td>
+          <td>{{ vm.expensesTotal }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Contribution Profit</h3>
+  </div>
+  
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Profit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Monthly</td>
+          <td>{{ vm.contributionProfitMonthly }}</td>
+        </tr>
+        <tr>
+          <td scope="row">Total</td>
+          <td>{{ vm.contributionProfitTotal }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Other</h3>
+  </div>
+  
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Fact</th>
+          <th>Figure</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td scope="row">Contirbution Margin</td>
+          <td>{{ vm.contributionMargin }}</td>
+        </tr>
+        <tr>
+          <td scope="row">Capital ROI (Months)</td>
+          <td>{{ vm.capitalRoi }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
 
 
 
