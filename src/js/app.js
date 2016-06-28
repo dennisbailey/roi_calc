@@ -1,7 +1,7 @@
-// sample angular code
+(function() {
 
-var app = angular.module('myApp', []);
+  'use strict';
 
-app.controller('myController', ['$scope', function($scope) {
-  $scope.greeting = "Hello World!";
-}]);
+  angular.module('roiCalcApp', ['ngRoute']);
+
+})();
