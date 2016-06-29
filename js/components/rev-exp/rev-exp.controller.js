@@ -8,7 +8,7 @@ function RevExpCtrl($rootScope, revExpService) {
 
   var vm = this;
   
-  // Attach the revenue and expense data to the scope
+  // Attach the revenue and expense data from data.js to the scope
   vm.revenueData = revenueData;
   vm.expenseData = expenseData;
   
@@ -23,6 +23,28 @@ function RevExpCtrl($rootScope, revExpService) {
     updateExpenseTotals();
     updateCalcs();
   };
+  
+  vm.cancelRevenueAdd = function() {
+    vm.addRevenue = {};
+  };
+  
+  vm.cancelExpenseAdd = function() {
+    vm.addExpense = {};
+  }
+  
+  vm.submitRevenueAdd = function() {
+    revenueData.push(vm.addRevenue);
+    vm.addRevenue = {};
+    updateRevenueTotals();
+    updateCalcs();
+  };
+  
+  vm.submitExpenseAdd = function() {
+    expenseData.push(vm.addExpense);
+    vm.addExpense = {};
+    updateExpenseTotals();
+    updateCalcs();
+  }
   
   var updateRevenueTotals = function() {
     vm.revenuesOneTimeTotal = revenueData.reduce(function (total, obj) { return total + obj.oneTime; }, 0);
