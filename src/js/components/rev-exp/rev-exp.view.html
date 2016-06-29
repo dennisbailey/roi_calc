@@ -6,7 +6,7 @@
   <div class="col-md-12">
     <h3>Revenue Items</h3>
   </div>
-  
+
   <div class="col-md-12">
     <table class="table table-bordered">
       <thead>
@@ -23,11 +23,11 @@
           <td class="text-right">{{ revenue.oneTime | currency }}</td>
           <td class="text-right">{{ revenue.monthly | currency }}</td>
           <td class="text-center">
-            <span class="glyphicon glyphicon-pencil text-warning" 
+            <span class="glyphicon glyphicon-pencil text-warning"
                   aria-hidden="true"
                   style="padding-right: 5px;"
                   ></span>
-            <span class="glyphicon glyphicon-remove text-danger" 
+            <span class="glyphicon glyphicon-remove text-danger"
                   aria-hidden="true"
                   style="padding-left: 5px;"
                   ng-click="vm.deleteRevenue($index)"
@@ -39,9 +39,9 @@
     </table>
   </div>
   <div class="col-md-6 col-md-offset-3">
-    <button type="button" 
-            class="btn btn-primary btn-md btn-block" 
-            data-toggle="modal" 
+    <button type="button"
+            class="btn btn-primary btn-md btn-block"
+            data-toggle="modal"
             data-target="revenue-modal">Add Revenue</button>
   </div>
 </div>
@@ -50,7 +50,7 @@
   <div class="col-md-12">
     <h3>Expense Items</h3>
   </div>
-  
+
   <div class="col-md-12">
     <table class="table table-bordered">
       <thead>
@@ -67,11 +67,11 @@
           <td class="text-right">{{ expense.oneTime | currency }}</td>
           <td class="text-right">{{ expense.monthly | currency }}</td>
           <td class="text-center">
-            <span class="glyphicon glyphicon-pencil text-warning" 
+            <span class="glyphicon glyphicon-pencil text-warning"
                   aria-hidden="true"
                   style="padding-right: 5px;"
                   ></span>
-            <span class="glyphicon glyphicon-remove text-danger" 
+            <span class="glyphicon glyphicon-remove text-danger"
                   aria-hidden="true"
                   style="padding-left: 5px;"
                   ng-click="vm.deleteExpense($index)"
@@ -83,7 +83,7 @@
     </table>
   </div>
   <div class="col-md-6 col-md-offset-3">
-    <button type="button" 
+    <button type="button"
             class="btn btn-primary btn-md btn-block"
             >Add Expense</button>
   </div>
@@ -93,7 +93,7 @@
   <div class="col-md-12">
     <h3>Revenue and Expense Totals</h3>
   </div>
-  
+
   <div class="col-md-12">
     <table class="table table-bordered">
       <thead>
@@ -132,7 +132,7 @@
   <div class="col-md-12">
     <h3>Contribution Profit</h3>
   </div>
-  
+
   <div class="col-md-12">
     <table class="table table-bordered">
       <thead>
@@ -159,7 +159,7 @@
   <div class="col-md-12">
     <h3>Other</h3>
   </div>
-  
+
   <div class="col-md-12">
     <table class="table table-bordered">
       <thead>
@@ -181,4 +181,3 @@
     </table>
   </div>
 </div>
-
