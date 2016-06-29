@@ -12,11 +12,11 @@ function revExpService($rootScope) {
       revenueData.splice(index, 1);
       return revenueData;
     },
-  
+
     deleteExpense : function(index) {
       expenseData.splice(index, 1);
       return expenseData;
     }
-  }
-
 };
+
+}
