@@ -1,14 +1,5 @@
-<!-- Revenue Modal -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <h1>Revenue and Expense</h1>
+<div class="row text-center">
+  <h1>Revenues and Expenses</h1>
 </div>
 
 <div class="row">
@@ -99,12 +90,8 @@
 </div>
 
 <div class="row">
-  <h1>ROI CALC</h1>
-</div>
-  
-<div class="row">
   <div class="col-md-12">
-    <h3>Totals</h3>
+    <h3>Revenue and Expense Totals</h3>
   </div>
   
   <div class="col-md-12">
@@ -112,20 +99,20 @@
       <thead>
         <tr>
           <th>Type</th>
-          <th>One-Time</th>
-          <th>Monthly</th>
-          <th>Total</th>
+          <th class="text-right">One-Time</th>
+          <th class="text-right">Monthly</th>
+          <th class="text-right">Total</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td scope="row">Revenues</td>
+          <td scope="row"><strong>Revenues</strong></td>
           <td class="text-right">{{ vm.revenuesOneTimeTotal | currency }}</td>
           <td class="text-right">{{ vm.revenuesMonthlyTotal | currency }}</td>
           <td class="text-right">{{ vm.revenuesTotal | currency }}</td>
         </tr>
         <tr>
-          <td scope="row">Expenses</td>
+          <td scope="row"><strong>Expenses</strong></td>
           <td class="text-right">{{ vm.expensesOneTimeTotal | currency }}</td>
           <td class="text-right">{{ vm.expensesMonthlyTotal | currency }}</td>
           <td class="text-right">{{ vm.expensesTotal | currency }}</td>
@@ -133,6 +120,12 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<br>
+
+<div class="row text-center">
+  <h1>Calculations</h1>
 </div>
 
 <div class="row">
@@ -145,16 +138,16 @@
       <thead>
         <tr>
           <th>Period</th>
-          <th>Profit</th>
+          <th class="text-right">Profit</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td scope="row">Monthly</td>
+          <td scope="row"><strong>Monthly</strong></td>
           <td class="text-right">{{ vm.contributionProfitMonthly | currency }}</td>
         </tr>
         <tr>
-          <td scope="row">Total</td>
+          <td scope="row"><strong>Total</strong></td>
           <td class="text-right">{{ vm.contributionProfitTotal | currency }}</td>
         </tr>
       </tbody>
