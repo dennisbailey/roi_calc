@@ -2,24 +2,24 @@ angular
   .module('roiCalcApp')
   .controller('RevExpCtrl', RevExpCtrl);
 
-RevExpCtrl.$inject = ['$rootScope'];
+RevExpCtrl.$inject = ['$rootScope', 'revExpService'];
 
-function RevExpCtrl($rootScope) {
+function RevExpCtrl($rootScope, revExpService) {
 
   var vm = this;
   
+  // Attach the revenue and expense data to the scope
   vm.revenueData = revenueData;
   vm.expenseData = expenseData;
   
+  
   vm.deleteRevenue = function(index) {
-    revenueData.splice(index, 1);
-    vm.revenueData = revenueData;
+    vm.revenueData = revExpService.deleteRevenue(index);
   };
   
   vm.deleteExpense = function(index) {
-    expenseData.splice(index, 1);
-    vm.expenseData = expenseData;
-  }
+    vm.expenseData = revExpService.deleteExpense(index);;
+  };
   
   var updateRevenueTotals = function() {
     
