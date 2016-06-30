@@ -50,7 +50,7 @@
 
   <div class="col-md-12">
     <form class="form-horizontal" 
-          ng-show="vm.showAddRevenueForm">
+          ng-show="vm.showRevenueForm">
     <fieldset>
     
     <legend>{{ vm.revenueFormTitle }}</legend>
@@ -135,7 +135,7 @@
         <button id="revenueUpdateBtn" 
                 name="revenueUpdateBtn" 
                 class="btn btn-success" 
-                ng-click="vm.updateRevenueItem(); 
+                ng-click="vm.submitRevenueUpdate(); 
                           vm.toggleHideUpdateRevenue();"
                 >Update Revenue</button>
       </div>
@@ -195,7 +195,7 @@
   
   <div class="col-md-12">
     <form class="form-horizontal"
-          ng-show="vm.showAddExpenseForm">
+          ng-show="vm.showExpenseForm">
     <fieldset>
     
     <legend>{{ vm.expenseFormTitle }}</legend>
@@ -280,7 +280,7 @@
         <button id="expenseUpdateBtn" 
                 name="expenseUpdateBtn" 
                 class="btn btn-success" 
-                ng-click="vm.updateExpenseItem(); 
+                ng-click="vm.submitExpenseUpdate(); 
                           vm.toggleHideUpdateExpense();"
                 >Update Expense</button>
       </div>

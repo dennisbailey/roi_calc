@@ -10,21 +10,27 @@ function RevExpCtrl($rootScope, revExpService) {
   
   // Default show/hide values
   vm.showAddRevenueBtn = true;
-  vm.showAddRevenueForm = false;
+  vm.showRevenueForm = false;
   vm.showUpdateRevenueBtn = false;
   vm.showAddExpenseBtn = true;
-  vm.showAddExpenseForm = false;
+  vm.showExpenseForm = false;
   
   // Functions to toggle between showing and hiding
   vm.toggleHideAddRevenue = function() {
     vm.showAddRevenueBtn = !vm.showAddRevenueBtn;
-    vm.showAddRevenueForm = !vm.showAddRevenueForm;
+    vm.showRevenueForm = !vm.showRevenueForm;
   };
   
   vm.toggleHideAddExpense = function() {
     vm.showAddExpenseBtn = !vm.showAddExpenseBtn;
-    vm.showAddExpenseForm = !vm.showAddExpenseForm;
+    vm.showExpenseForm = !vm.showExpenseForm;
   };
+  
+  vm.toggleHideUpdateRevenue = function() {
+    vm.showUpdateRevenueBtn = false;
+    vm.showRevenueForm = !vm.showRevenueForm;
+    vm.showAddRevenueBtn = !vm.showAddRevenueBtn;
+  };  
   
   // Attach the revenue and expense data from data.js to the scope
   vm.revenueData = revenueData;
@@ -44,16 +50,16 @@ function RevExpCtrl($rootScope, revExpService) {
   };
   
   // Functions to edit an existing revenue or expense
-  var preUpdateRevenue;
-  var preUpdateExpense;
+//   var preUpdateRevenue;
+//   var preUpdateExpense;
   
   vm.editRevenue = function(index) {
     vm.revenueIndex = index;
     vm.showUpdateRevenueBtn = true;
     vm.revenueFormTitle = 'Edit This Revenue Item';
     vm.formRevenue = revenueData[index];
-    preUpdateRevenue = revenueData[index];
-    console.log('edit fn ', preUpdateRevenue);
+    vm.preUpdateRevenue = revenueData[index];
+    console.log('edit fn ', vm.preUpdateRevenue);
     vm.toggleHideAddRevenue();
   };
   
@@ -62,26 +68,42 @@ function RevExpCtrl($rootScope, revExpService) {
     vm.showUpdateExpenseBtn = true;
     vm.expenseFormTitle = 'Edit This Expense Item';
     vm.formExpense = expenseData[index];
-    preUpdateExpense = expenseData[index];
+    vm.preUpdateExpense = expenseData[index];
     vm.toggleHideAddExpense();
   };
   
-  vm.updateRevenueItem = function() {
+  // Functions to submit an update to a revenue or expense
+  vm.submitRevenueUpdate = function() {
     revenueData[vm.revenueIndex] = vm.formRevenue;
     vm.formRevenue = {};
     vm.showUpdateRevenueBtn = false;
-    vm.toggleHideAddRevenue();
     updateRevenueTotals();
     updateCalcs();
   };
   
-  vm.updateExpenseItem = function() {
+  vm.submitExpenseUpdate = function() {
     rexpenseData[vm.expenseIndex] = vm.formExpense;
     vm.formExpense = {};
     vm.showUpdateExpenseBtn = false;
     vm.toggleHideAddExpense();
     updateExpenseTotals();
     updateCalcs();
+  };
+  
+  // Functions to cancel updating a revenue or expense
+  vm.cancelRevenueUpdate = function() {
+    console.log('cancel pre ', vm.preUpdateRevenue);
+    console.log('index ', vm.revenueIndex);
+    revenueData[vm.revenueIndex] = vm.preUpdateRevenue;
+    vm.revenueData = revenueData;
+    vm.formRevenue = {};
+  };
+  
+  vm.cancelExpenseUpdate = function() {
+    console.log('cancel pre ', vm.preUpdateExpense);
+    expenseData[vm.expenseIndex] = vm.preUpdateExpense;
+    vm.expenseData = expenseData;
+    vm.formExpense = {};
   };
   
   // Functions to add a new revenue or expense to the data
@@ -99,27 +121,12 @@ function RevExpCtrl($rootScope, revExpService) {
     updateCalcs();
   };
   
-  
-  // Functions to cancel adding or updating a revenue or expense
+  // Functions to cancel adding a revenue or expense
   vm.cancelRevenueAdd = function() {
     vm.formRevenue = {};
   };
   
   vm.cancelExpenseAdd = function() {
-    vm.formExpense = {};
-  };
-  
-  vm.cancelRevenueUpdate = function() {
-    console.log(preUpdateRevenue);
-    revenueData[vm.revenueIndex] = preUpdateRevenue;
-    vm.revenueData = revenueData;
-    vm.formRevenue = {};
-    vm.showUpdateRevenueBtn = false;
-    vm.toggleHideAddRevenue();
-  };
-  
-  vm.cancelExpenseUpdate = function() {
-    expenseData[vm.expenseIndex] = vm.preUpdateExpense;
     vm.formExpense = {};
   };
   
