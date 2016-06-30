@@ -11,7 +11,6 @@ function RevExpCtrl($rootScope, revExpService) {
   // Default show/hide values
   vm.showAddRevenueBtn = true;
   vm.showRevenueForm = false;
-  vm.showUpdateRevenueBtn = false;
   vm.showAddExpenseBtn = true;
   vm.showExpenseForm = false;
   
@@ -26,15 +25,10 @@ function RevExpCtrl($rootScope, revExpService) {
     vm.showExpenseForm = !vm.showExpenseForm;
   };
   
-  vm.toggleHideUpdateRevenue = function() {
-    vm.showUpdateRevenueBtn = false;
-    vm.showRevenueForm = !vm.showRevenueForm;
-    vm.showAddRevenueBtn = !vm.showAddRevenueBtn;
-  };  
-  
   // Attach the revenue and expense data from data.js to the scope
   vm.revenueData = revenueData;
   vm.expenseData = expenseData;
+  
   
   // Functions to delete revenue and expense line items
   vm.deleteRevenue = function(index) {
@@ -49,62 +43,6 @@ function RevExpCtrl($rootScope, revExpService) {
     updateCalcs();
   };
   
-  // Functions to edit an existing revenue or expense
-//   var preUpdateRevenue;
-//   var preUpdateExpense;
-  
-  vm.editRevenue = function(index) {
-    vm.revenueIndex = index;
-    vm.showUpdateRevenueBtn = true;
-    vm.revenueFormTitle = 'Edit This Revenue Item';
-    vm.formRevenue = revenueData[index];
-    vm.preUpdateRevenue = revenueData[index];
-    console.log('edit fn ', vm.preUpdateRevenue);
-    vm.toggleHideAddRevenue();
-  };
-  
-  vm.editExpense = function(index) {
-    vm.expenseIndex = index;
-    vm.showUpdateExpenseBtn = true;
-    vm.expenseFormTitle = 'Edit This Expense Item';
-    vm.formExpense = expenseData[index];
-    vm.preUpdateExpense = expenseData[index];
-    vm.toggleHideAddExpense();
-  };
-  
-  // Functions to submit an update to a revenue or expense
-  vm.submitRevenueUpdate = function() {
-    revenueData[vm.revenueIndex] = vm.formRevenue;
-    vm.formRevenue = {};
-    vm.showUpdateRevenueBtn = false;
-    updateRevenueTotals();
-    updateCalcs();
-  };
-  
-  vm.submitExpenseUpdate = function() {
-    rexpenseData[vm.expenseIndex] = vm.formExpense;
-    vm.formExpense = {};
-    vm.showUpdateExpenseBtn = false;
-    vm.toggleHideAddExpense();
-    updateExpenseTotals();
-    updateCalcs();
-  };
-  
-  // Functions to cancel updating a revenue or expense
-  vm.cancelRevenueUpdate = function() {
-    console.log('cancel pre ', vm.preUpdateRevenue);
-    console.log('index ', vm.revenueIndex);
-    revenueData[vm.revenueIndex] = vm.preUpdateRevenue;
-    vm.revenueData = revenueData;
-    vm.formRevenue = {};
-  };
-  
-  vm.cancelExpenseUpdate = function() {
-    console.log('cancel pre ', vm.preUpdateExpense);
-    expenseData[vm.expenseIndex] = vm.preUpdateExpense;
-    vm.expenseData = expenseData;
-    vm.formExpense = {};
-  };
   
   // Functions to add a new revenue or expense to the data
   vm.submitRevenueAdd = function() {
@@ -120,6 +58,7 @@ function RevExpCtrl($rootScope, revExpService) {
     updateExpenseTotals();
     updateCalcs();
   };
+  
   
   // Functions to cancel adding a revenue or expense
   vm.cancelRevenueAdd = function() {
