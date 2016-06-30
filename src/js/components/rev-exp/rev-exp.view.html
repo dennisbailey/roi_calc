@@ -26,6 +26,7 @@
             <span class="glyphicon glyphicon-pencil text-warning"
                   aria-hidden="true"
                   style="padding-right: 5px;"
+                  ng-click="vm.editRevenue($index);"
                   ></span>
             <span class="glyphicon glyphicon-remove text-danger"
                   aria-hidden="true"
@@ -38,49 +39,105 @@
       </tbody>
     </table>
   </div>
-  
   <div class="col-md-6 col-md-offset-3">
     <button type="button"
             class="btn btn-primary btn-md btn-block"
-            data-toggle="modal"
-            data-target="revenue-modal">Add Revenue</button>
+            ng-show="vm.showAddRevenueBtn"
+            ng-click="vm.toggleHideAddRevenue(); 
+                      vm.revenueFormTitle = 'Add a New Revenue Item';"
+            >Add Revenue</button>
   </div>
 
   <div class="col-md-12">
-    <form class="form-horizontal">
+    <form class="form-horizontal" 
+          ng-show="vm.showAddRevenueForm">
     <fieldset>
     
-    <legend>Add a New Revenue Item</legend>
+    <legend>{{ vm.revenueFormTitle }}</legend>
     
     <div class="form-group">
-      <label class="col-md-4 control-label" for="description">Revenue Description</label>  
+      <label class="col-md-4 control-label" 
+             for="description"
+             >Revenue Description</label>  
       <div class="col-md-4">
-      <input ng-model="vm.addRevenue.description" id="description" name="description" type="text" placeholder="A short description" class="form-control input-md" required="">
+      <input ng-model="vm.formRevenue.description" 
+             id="description" 
+             name="description" 
+             type="text" 
+             placeholder="A short description" 
+             class="form-control input-md" 
+             required="">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-md-4 control-label" 
+             for="oneTime"
+             >One Time Revenue</label>  
+      <div class="col-md-4">
+      <input ng-model="vm.formRevenue.oneTime" 
+             id="oneTime" 
+             name="oneTime" 
+             type="number" 
+             placeholder="$XX.XX" 
+             class="form-control input-md" 
+             required="">
         
       </div>
     </div>
     
     <div class="form-group">
-      <label class="col-md-4 control-label" for="oneTime">One Time Revenue</label>  
+      <label class="col-md-4 control-label" 
+             for="monthly">Monthly Revenue</label>  
       <div class="col-md-4">
-      <input ng-model="vm.addRevenue.oneTime" id="oneTime" name="oneTime" type="number" placeholder="$XX.XX" class="form-control input-md" required="">
-        
+      <input ng-model="vm.formRevenue.monthly" 
+             id="monthly" 
+             name="monthly" 
+             type="number" 
+             placeholder="$XX.XX" 
+             class="form-control input-md" 
+             required="">
       </div>
     </div>
     
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="monthly">Monthly Revenue</label>  
-      <div class="col-md-4">
-      <input ng-model="vm.addRevenue.monthly" id="monthly" name="monthly" type="number" placeholder="$XX.XX" class="form-control input-md" required="">
-        
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="revenueCancelBtn"></label>
+    <div class="form-group"
+         ng-hide="vm.showUpdateRevenueBtn">
+      <label class="col-md-4 control-label" 
+              for="revenueCancelBtn"
+              ></label>
       <div class="col-md-8">
-        <button id="revenueCancelBtn" name="revenueCancelBtn" class="btn btn-warning" ng-click="vm.cancelRevenueAdd();">Cancel</button>
-        <button id="revenueAddBtn" name="revenueAddBtn" class="btn btn-success" ng-click="vm.submitRevenueAdd();">Add Revenue</button>
+        <button id="revenueCancelBtn" 
+                name="revenueCancelBtn" 
+                class="btn btn-warning" 
+                ng-click="vm.cancelRevenueAdd(); 
+                          vm.toggleHideAddRevenue();"
+                >Cancel</button>
+        <button id="revenueAddBtn" 
+                name="revenueAddBtn" 
+                class="btn btn-success" 
+                ng-click="vm.submitRevenueAdd(); 
+                          vm.toggleHideAddRevenue();"
+                >Add Revenue</button>
+      </div>
+    </div>
+    
+    <div class="form-group"
+         ng-show="vm.showUpdateRevenueBtn">
+      <label class="col-md-4 control-label" 
+             for="revenueUpdateCancelBtn"></label>
+      <div class="col-md-8">
+        <button id="revenueUpdateCancelBtn" 
+                name="revenueUpdateCancelBtn" 
+                class="btn btn-warning" 
+                ng-click="vm.cancelRevenueUpdate(); 
+                          vm.toggleHideUpdateRevenue();"
+                >Cancel Update</button>
+        <button id="revenueUpdateBtn" 
+                name="revenueUpdateBtn" 
+                class="btn btn-success" 
+                ng-click="vm.updateRevenueItem(); 
+                          vm.toggleHideUpdateRevenue();"
+                >Update Revenue</button>
       </div>
     </div>
     
@@ -114,6 +171,7 @@
             <span class="glyphicon glyphicon-pencil text-warning"
                   aria-hidden="true"
                   style="padding-right: 5px;"
+                  ng-click="vm.editExpense($index);"
                   ></span>
             <span class="glyphicon glyphicon-remove text-danger"
                   aria-hidden="true"
@@ -129,46 +187,105 @@
   <div class="col-md-6 col-md-offset-3">
     <button type="button"
             class="btn btn-primary btn-md btn-block"
+            ng-show="vm.showAddExpenseBtn"
+            ng-click="vm.toggleHideAddExpense();
+                      vm.expenseFormTitle = 'Add a New Expense Item';"
             >Add Expense</button>
   </div>
   
   <div class="col-md-12">
-    <form class="form-horizontal">
+    <form class="form-horizontal"
+          ng-show="vm.showAddExpenseForm">
     <fieldset>
     
-    <legend>Add a New Expense Item</legend>
+    <legend>{{ vm.expenseFormTitle }}</legend>
     
     <div class="form-group">
-      <label class="col-md-4 control-label" for="description">Expense Description</label>  
+      <label class="col-md-4 control-label" 
+             for="description"
+             >Expense Description</label>  
       <div class="col-md-4">
-      <input ng-model="vm.addExpense.description" id="description" name="description" type="text" placeholder="A short description" class="form-control input-md" required="">
-        
+      <input ng-model="vm.formExpense.description" 
+             id="description" 
+             name="description" 
+             type="text" 
+             placeholder="A short description" 
+             class="form-control input-md" 
+             required="">
       </div>
     </div>
     
     <div class="form-group">
-      <label class="col-md-4 control-label" for="oneTime">One Time Expense</label>  
+      <label class="col-md-4 control-label" 
+             for="oneTime"
+             >One Time Expense</label>  
       <div class="col-md-4">
-      <input ng-model="vm.addExpense.oneTime" id="oneTime" name="oneTime" type="number" placeholder="$XX.XX" class="form-control input-md" required="">
-        
+      <input ng-model="vm.formExpense.oneTime" 
+             id="oneTime" 
+             name="oneTime" 
+             type="number" 
+             placeholder="$XX.XX" 
+             class="form-control input-md" 
+             required="">
       </div>
     </div>
     
     <div class="form-group">
-      <label class="col-md-4 control-label" for="monthly">Monthly Expense</label>  
+      <label class="col-md-4 control-label" 
+             for="monthly"
+             >Monthly Expense</label>  
       <div class="col-md-4">
-      <input ng-model="vm.addExpense.monthly" id="monthly" name="monthly" type="number" placeholder="$XX.XX" class="form-control input-md" required="">
-        
+      <input ng-model="vm.formExpense.monthly" 
+             id="monthly" 
+             name="monthly" 
+             type="number" 
+             placeholder="$XX.XX" 
+             class="form-control input-md" 
+             required="">
       </div>
     </div>
     
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="ExpenseCancelBtn"></label>
+    <div class="form-group"
+         ng-hide="vm.showUpdateExpenseBtn">
+      <label class="col-md-4 control-label" 
+             for="ExpenseCancelBtn"
+             ></label>
       <div class="col-md-8">
-        <button id="ExpenseCancelBtn" name="ExpenseCancelBtn" class="btn btn-warning" ng-click="vm.cancelExpenseAdd();">Cancel</button>
-        <button id="ExpenseAddBtn" name="ExpenseAddBtn" class="btn btn-success" ng-click="vm.submitExpenseAdd();">Add Expense</button>
+        <button id="ExpenseCancelBtn" 
+                name="ExpenseCancelBtn" 
+                class="btn btn-warning" 
+                ng-click="vm.cancelExpenseAdd();
+                          vm.toggleHideAddExpense();"
+                >Cancel</button>
+        <button id="ExpenseAddBtn" 
+                name="ExpenseAddBtn" 
+                class="btn btn-success" 
+                ng-click="vm.submitExpenseAdd();
+                          vm.toggleHideAddExpense();"
+                >Add Expense</button>
       </div>
     </div>
+    
+    <div class="form-group"
+         ng-show="vm.showUpdateExpenseBtn">
+      <label class="col-md-4 control-label" 
+             for="expenseUpdateCancelBtn"></label>
+      <div class="col-md-8">
+        <button id="expenseUpdateCancelBtn" 
+                name="expenseUpdateCancelBtn" 
+                class="btn btn-warning" 
+                ng-click="vm.cancelExpenseUpdate(); 
+                          vm.toggleHideUpdateExpense();"
+                >Cancel Update</button>
+        <button id="expenseUpdateBtn" 
+                name="expenseUpdateBtn" 
+                class="btn btn-success" 
+                ng-click="vm.updateExpenseItem(); 
+                          vm.toggleHideUpdateExpense();"
+                >Update Expense</button>
+      </div>
+    </div>
+
     
     </fieldset>
     </form>
