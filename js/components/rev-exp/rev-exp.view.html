@@ -4,6 +4,20 @@
     color: #FFF;
   }
   
+  .striped {
+    background-color: #EFEFEF;
+  }
+  
+  .positive {
+    color: white;
+    background-color: green;
+  }
+  
+  .negative {
+    color: white;
+    background-color: red;
+  }
+  
 </style>
 
 <div class="row">
@@ -33,13 +47,13 @@
           <td scope="row"><strong>Revenues</strong></td>
           <td class="text-right">{{ vm.revenuesOneTimeTotal | currency }}</td>
           <td class="text-right">{{ vm.revenuesMonthlyTotal | currency }}</td>
-          <td class="text-right">{{ vm.revenuesTotal | currency }}</td>
+          <td class="text-right"><u>{{ vm.revenuesTotal | currency }}</u></td>
         </tr>
         <tr>
           <td scope="row"><strong>Expenses</strong></td>
           <td class="text-right">{{ vm.expensesOneTimeTotal | currency }}</td>
           <td class="text-right">{{ vm.expensesMonthlyTotal | currency }}</td>
-          <td class="text-right">{{ vm.expensesTotal | currency }}</td>
+          <td class="text-right"><u>{{ vm.expensesTotal | currency }}</u></td>
         </tr>
       </tbody>
     </table>
@@ -59,11 +73,15 @@
       <tbody>
         <tr>
           <td scope="row"><strong>Monthly</strong></td>
-          <td class="text-right">{{ vm.contributionProfitMonthly | currency }}</td>
+          <td class="text-right"
+              ng-class="{ positive : vm.contributionProfitMonthly > 0, negative : vm.contributionProfitMonthly <= 0 }"
+              >{{ vm.contributionProfitMonthly | currency }}</td>
         </tr>
         <tr>
           <td scope="row"><strong>Total</strong></td>
-          <td class="text-right">{{ vm.contributionProfitTotal | currency }}</td>
+          <td class="text-right"
+              ng-class="{ positive : vm.contributionProfitTotal > 0, negative : vm.contributionProfitTotal <= 0 }"
+              >{{ vm.contributionProfitTotal | currency }}</td>
         </tr>
       </tbody>
     </table>
@@ -81,11 +99,13 @@
       <tbody>
         <tr>
           <td scope="row"><strong>Contribution Margin</strong></td>
-          <td>{{ vm.contributionMargin | number:0 }}%</td>
+          <td ng-class="{ positive : vm.contributionMargin > 0, negative : vm.contributionMargin <= 0 }"
+              >{{ vm.contributionMargin | number:0 }}%</td>
         </tr>
         <tr>
           <td scope="row"><strong>Capital ROI (Months)</strong></td>
-          <td>{{ vm.capitalRoi | number:1 }}</td>
+          <td ng-class="{ positive : vm.capitalRoi > 0, negative : vm.capitalRoi <= 0 }"
+              >{{ vm.capitalRoi | number:1 }}</td>
         </tr>
       </tbody>
     </table>
@@ -100,7 +120,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h3>Revenue Items</h3>
+    <h3><u>Revenue Items</u></h3>
   </div>
 
   <div class="col-md-12">
@@ -114,7 +134,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat-start="revenue in vm.revenueData">
+        <tr ng-repeat="revenue in vm.revenueData" 
+            ng-class-even="'striped'">
           <td><strong>{{ revenue.description }}</strong></td>
           <td class="text-right">{{ revenue.oneTime | currency }}</td>
           <td class="text-right">{{ revenue.monthly | currency }}</td>
@@ -126,7 +147,6 @@
                   ></span>
           </td>
         </tr>
-        <tr ng-repeat-end></tr>
       </tbody>
     </table>
   </div>
@@ -219,7 +239,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h3>Expense Items</h3>
+    <h3><u>Expense Items</u></h3>
   </div>
 
   <div class="col-md-12">
@@ -233,7 +253,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat-start="expense in vm.expenseData">
+        <tr ng-repeat="expense in vm.expenseData" 
+            ng-class-even="'striped'">
           <td><strong>{{ expense.description }}</strong></td>
           <td class="text-right">{{ expense.oneTime | currency }}</td>
           <td class="text-right">{{ expense.monthly | currency }}</td>
@@ -245,7 +266,6 @@
                   ></span>
           </td>
         </tr>
-        <tr ng-repeat-end></tr>
       </tbody>
     </table>
   </div>
