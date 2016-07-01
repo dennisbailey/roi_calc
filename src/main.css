@@ -1,0 +1,18 @@
+thead {
+  background-color: #337ab7;
+  color: #FFF;
+}
+
+.striped {
+  background-color: #EFEFEF;
+}
+
+.positive {
+  color: white;
+  background-color: green;
+}
+
+.negative {
+  color: white;
+  background-color: red;
+}
